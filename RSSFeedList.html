@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Feed List</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var url = "http://pipes.yahoo.com/pipes/pipe.run?_id=f42c711ab0e64056fd200b38ad98e102&_render=json&_callback=?";
+	//var url	=	"rss.txt";
+	$.getJSON(url,
+        function(data) {
+			for(var i = 0; i < data.value.items[0].entry.length ; i += 1){
+				//$('.jsonFeed').append('<li>'+'<a href="#IsRet">' +'<h5>' + data.value.items[0].entry[i].title +'</h5>'+'<div>'+ data.value.items[0].entry[i].content.content + '</div>'+'<br>'+'<a href="'+ data.value.items[0].entry[i].link[0].href +'" target="_blank">[Read more...] </a>'+'</a>') + '<br>';
+				$('.jsonFeed').append('<div class="articleContent"><div style="direction: ltr; text-align: justify;"><table class="table-feed" cellspacing="0" cellpadding="0">'+'<tr><td style="text-align:center;"><b><a href="'+ data.value.items[0].entry[i].link[0].href +'" target="_blank">'+ data.value.items[0].entry[i].title +'</a></b></td></tr><tr><td>&nbsp;</td></tr>'+'<tr><td>'+ data.value.items[0].entry[i].content.content + '</td></tr></table></div>'+'</div><div class="spacer"></div>') ;
+		    }
+        });
+});
+</script>
+	<style>
+	body {
+		background-image: url('http://www.bittorrent.com/images/interface/bg-homepage.png');
+		width			: auto;
+		position		: static;
+		z-index 		: 1;
+	}
+	div.head {
+		background-color: #571B7E;
+		height			: 60px;
+		width 			: auto;
+		position		: relative;
+		top 			: -8px;
+		right			: 15px;
+		left			: -1px;
+		z-index			: 2;
+	}
+	table.tabledesign {
+		width			: 80%; 
+		cellspacing     : 0 ;
+		cellpadding  	: 0;
+		margin-left		: 16%;
+		margin-right	: 15%;
+		margin-top		: 2%;
+	}
+	p.title {
+		color			: white;
+		position		: absolute;
+		left			: 42%;
+		top				: -18px;
+		z-index			: 3;
+		font-family		: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+		font-weight		: bold;
+		font-style		: oblique;
+		font-size		: 30px;
+	}
+	div.articleContent {
+		background		: none repeat scroll 0 0 #E9CFEC;
+		border			: 2px solid #7A5DC7;
+		border-radius	: 25px;
+		-moz-border-radius :25px;
+		padding			: 5px;
+		width			: 80%;	
+	}
+	div.jsonFeed {
+		border			: medium none;
+		border-spacing	: 0;
+		opacity			:0.5;
+	}
+	.table-feed {
+		color			: black;;
+		font-weight		:bold;
+		width			:100%;
+	}
+	.jsonFeed a:hover {
+		color			:red;
+	}
+	.spacer {
+		border 			: none;
+		height 			: 25px;
+		display 		: block;
+	}
+	</style>
+</head>
+ 
+<body>
+    <div class="head">
+	  <p class="title">List of Feeds </p>
+	</div>
+		<table class="tabledesign">
+		  <tr>
+			<td style='text-align:justify;'>
+			  <div class="jsonFeed">
+			  </div>
+			</td>
+		  </tr>
+		</table>
+</body>
+</html>
